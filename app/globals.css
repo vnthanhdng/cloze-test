@@ -7,12 +7,24 @@
   --foreground: #171717;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
   }
+} */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
+
+
+html {
+  scroll-behavior: smooth;
+}
+
 
 body {
   color: var(--foreground);
@@ -24,4 +36,8 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+.tooltip {
+  @apply absolute top-0 left-0 max-w-max;
 }
