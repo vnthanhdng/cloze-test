@@ -1,7 +1,7 @@
 'use client';
 
 import { useSearchParams } from 'next/navigation';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { Container, Typography, Box, Button } from '@mui/material';
 
 
@@ -50,7 +50,7 @@ function calculateFleschKincaid(text: string): number {
     return score;  // Returns the float score.
 }
 
-export default function ResultPage() {
+function ResultPageContent() {
     const searchParams = useSearchParams();
     const originalText = searchParams.get('originalText') || '';
     const userInput = searchParams.get('userInput') || '';
@@ -138,5 +138,13 @@ export default function ResultPage() {
                 Take Another Test
             </Button>
         </Container>
+    );
+}
+
+export default function ResultPage() {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <ResultPageContent />
+        </Suspense>
     );
 }

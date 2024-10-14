@@ -1,7 +1,7 @@
 'use client';
 
 import { useSearchParams, useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
 import { Container, Typography, TextField, Box, Button } from '@mui/material';
 
 // Function to blur words, keeping the first 1-2 characters
@@ -15,7 +15,7 @@ function blurWord(word: string): string {
     }
 }
 
-export default function TestPage() {
+function TestPageContent() {
     const searchParams = useSearchParams();
     const text = searchParams.get('text') || '';
     const nValue = parseInt(searchParams.get('nValue') || '6', 10);
@@ -85,5 +85,13 @@ export default function TestPage() {
                 </Button>
             </Box>
         </Container>
+    );
+}
+
+export default function TestPage() {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <TestPageContent />
+        </Suspense>
     );
 }
