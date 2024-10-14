@@ -1,19 +1,10 @@
 'use client';
 
-import { useSearchParams, useRouter } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import { Container, Typography, Box, Button } from '@mui/material';
 
-// Function to blur words, keeping the first 1-2 characters
-function blurWord(word: string): string {
-    if (word.length <= 2) {
-        return '_'.repeat(word.length);
-    } else if (word.length <= 4) {
-        return word[0] + '_'.repeat(word.length - 1);
-    } else {
-        return word.slice(0, 2) + '_'.repeat(word.length - 2);
-    }
-}
+
 
 function calculateScore(originalText: string, userInput: string): number {
     const originalWords = originalText.split(' ');

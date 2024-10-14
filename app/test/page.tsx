@@ -25,7 +25,7 @@ export default function TestPage() {
     const words = text.split(' ');
 
     const handleInputChange = (index: number, value: string) => {
-        let inputs = [...userInput];
+        const inputs = [...userInput];
         inputs[index] = value;
         setUserInput(inputs);
     };
